@@ -25,11 +25,11 @@ public final class Constants {
     public static final int rightFollowerDeviceID = 3;
 
      // PID coefficients
-     public static final double kP = 6e-5; 
+     public static final double kP = 0.5; // 6e-5; 
      public static final double kI = 0;
      public static final double kD = 0; 
      public static final double kIz = 0; 
-     public static final double kFF = 0.000015; 
+     public static final double kFF = 0.2; // .000015; 
      public static final double  kMaxOutput = 1; 
      public static final double  kMinOutput = -1;
      public static final double  maxRPM = 5700;  

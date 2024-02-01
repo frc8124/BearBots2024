@@ -34,8 +34,8 @@ public class DriveSubsystem extends SubsystemBase {
    // 1/2 rotation per second.
    public static final double kMaxAngularSpeed = Math.PI;
  
-   private static final double kTrackWidth = 0.381 * 2;  // meters
-   private static final double kWheelRadius = 0.0508;  // meters
+   private static final double kTrackWidth = 0.54864;  // meters
+   private static final double kWheelRadius = 0.076;  // meters
    private static final double kGearReduction = 10.71;  // ratio
    private static final int kEncoderResolution = 1;   // position count per motor revolution
   
@@ -134,6 +134,14 @@ public class DriveSubsystem extends SubsystemBase {
     // m_drive = new DifferentialDrive(m_leftLeader, m_rightLeader);
 
     SmartDashboard.putData("Field", m_fieldSim);
+
+    int i = 1;
+        for( SparkPIDController controller : new SparkPIDController[]{m_leftPIDController, m_rightPIDController} ) {
+          SmartDashboard.putNumber("P"+i, controller.getP() );
+          SmartDashboard.putNumber("I"+i, controller.getI() );
+          SmartDashboard.putNumber("FF"+i, controller.getFF() );
+          i++;
+        }
   
   }
   
@@ -168,7 +176,8 @@ public class DriveSubsystem extends SubsystemBase {
 
       m_leftPIDController.setReference( speeds.leftMetersPerSecond, CANSparkMax.ControlType.kVelocity);
       m_rightPIDController.setReference( speeds.rightMetersPerSecond, CANSparkMax.ControlType.kVelocity);
-      
+      //m_leftLeader.set(speeds.leftMetersPerSecond);
+     // m_rightLeader.set(speeds.rightMetersPerSecond);
     }
   
     /**
@@ -180,7 +189,7 @@ public class DriveSubsystem extends SubsystemBase {
     public void drive(double xSpeed, double rot) {
         // Full extent joystick will command 1 meter/sec velocity
 
-        rot = rot / Math.PI;  // rot of 1 would be 1 rad =  1/2PI deg  = 57 degrees/sec
+        rot = rot * Math.PI * 2.0;  // rot of 1 would be 1 rad =  1/2PI deg  = 57 degrees/sec
         SmartDashboard.putNumber("Commanded speed (m/s)", xSpeed);
         SmartDashboard.putNumber("Commanded rotation (rad/s)", rot);
 
@@ -214,6 +223,9 @@ public class DriveSubsystem extends SubsystemBase {
     public void periodic() {
       updateOdometry();
       m_fieldSim.setRobotPose(m_odometry.getPoseMeters());
+
+      SmartDashboard.putNumber("leftencoder", m_leftEncoder.getPosition());
+      SmartDashboard.putNumber("leftvelocity", m_leftEncoder.getVelocity());
     }
 
     /**
