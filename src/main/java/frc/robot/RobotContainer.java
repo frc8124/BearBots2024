@@ -4,12 +4,16 @@
 
 package frc.robot;
 
+import javax.sound.midi.VoiceStatus;
+
 import edu.wpi.first.wpilibj.RobotBase;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DefaultSimDriveTrainCommand;
 import frc.robot.commands.DefaultDriveTrainCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.VisionSubsystem;
+import frc.robot.subsystems.PoseEstimationSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -24,6 +28,12 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_DriveTrainSubsystem = new DriveSubsystem();
 
+  // Photonvision subsystem
+  private VisionSubsystem m_VisionSubsystem = null;
+
+  // PoseEstimation subsytem
+  private PoseEstimationSubsystem m_PoseEstimationSubsystem = new PoseEstimationSubsystem();
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -33,6 +43,8 @@ public class RobotContainer {
 
     if (!RobotBase.isReal())
         m_DriveTrainSubsystem.simulationInit();
+    else
+        m_VisionSubsystem = new VisionSubsystem();
 
       // Configure the trigger bindings
     configureBindings();

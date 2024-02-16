@@ -18,9 +18,9 @@ import edu.wpi.first.math.numbers.N2;
 import edu.wpi.first.math.system.LinearSystem;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.system.plant.LinearSystemId;
-import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.simulation.ADXRS450_GyroSim;
 import edu.wpi.first.wpilibj.RobotController;
-import edu.wpi.first.wpilibj.simulation.AnalogGyroSim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -53,7 +53,7 @@ public class DriveSubsystem extends SubsystemBase {
    private final SparkPIDController m_leftPIDController;
    private final SparkPIDController m_rightPIDController;
    
-   private final AnalogGyro m_gyro = new AnalogGyro(0);
+   private final ADXRS450_Gyro m_gyro = new ADXRS450_Gyro();
  
     // Creates a SlewRateLimiter that limits the rate of change of the signal to 0.5 units per second
    
@@ -68,7 +68,7 @@ public class DriveSubsystem extends SubsystemBase {
 
    private boolean m_bSimulate = false;
 
-    private AnalogGyroSim m_gyroSim;
+    private ADXRS450_GyroSim m_gyroSim;
     private final LinearSystem<N2, N2, N2> m_drivetrainSystem =
             LinearSystemId.identifyDrivetrainSystem(1.98, 0.2, 1.5, 0.3);
     private DifferentialDrivetrainSim m_drivetrainSimulator;
@@ -200,6 +200,8 @@ public class DriveSubsystem extends SubsystemBase {
     public void updateOdometry() {
       m_odometry.update(
           m_gyro.getRotation2d(), m_leftEncoder.getPosition(), m_rightEncoder.getPosition());
+
+      
     }
   
     /** Resets robot odometry. */
@@ -236,7 +238,7 @@ public class DriveSubsystem extends SubsystemBase {
     public void simulationInit(){
         m_bSimulate = true;
 
-        m_gyroSim = new AnalogGyroSim(m_gyro);
+        m_gyroSim = new ADXRS450_GyroSim(m_gyro);
         m_drivetrainSimulator =
         new DifferentialDrivetrainSim(
                 m_drivetrainSystem, DCMotor.getNEO(2),  kGearReduction, kTrackWidth, kWheelRadius, null);
