@@ -38,7 +38,7 @@ public class RobotContainer {
   private VisionSubsystem m_VisionSubsystem = null;
 
   //Intake subsytem
-  private IntakeSubsystem m_IntakeSubsystem;
+  private IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
 
   // PoseEstimation subsytem
   private PoseEstimationSubsystem m_PoseEstimationSubsystem = new PoseEstimationSubsystem();
@@ -60,8 +60,8 @@ public class RobotContainer {
     configureBindings();{
         Trigger buttonY = new JoystickButton(m_intakeController, XboxController.Button.kY.value);
     buttonY.onTrue( new SequentialCommandGroup(
-          new RunCommand( m_IntakeSubsystem::raise, m_IntakeSubsystem ).withTimeout(1.5),
-          new InstantCommand( m_IntakeSubsystem::drop, m_IntakeSubsystem)
+          new RunCommand( m_IntakeSubsystem::inward, m_IntakeSubsystem ).withTimeout(1.5),
+          new InstantCommand( m_IntakeSubsystem::stop, m_IntakeSubsystem)
     ));
     }
   }
