@@ -19,10 +19,6 @@ import edu.wpi.first.math.geometry.Translation3d;
 
 public class Autos extends SequentialCommandGroup {
 
-  private static final Translation3d upTranslation = new Translation3d(0.0, 0.0, 1.0);
-  private static final Translation3d leftTranslation = new Translation3d(0.0, 1.0, 0.0);
-  private static final Translation3d downTranslation = new Translation3d(0.0, 0.0, -1.0);
-  private static final Translation3d rightTranslation = new Translation3d(0.0, -1.0, 0.0);
   public static Command exampleAuto(DriveSubsystem m_DriveTrainSubsystem) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'exampleAuto'");
