@@ -272,4 +272,27 @@ public class DriveSubsystem extends SubsystemBase {
         //REVPhysicsSim.getInstance().run();
 
     }
+
+    public void forwardSlow() {
+      //System.out.println("Drivetrain forwardslow");
+    
+      drive(1,0);
+    
+    }
+    
+    public void backwardSlow() {
+      //System.out.println("Drivetrain backward slow");
+    
+      drive(-1,0);
+      
+      }
+    
+    public void stop() {
+      //System.out.println("Drivetrain stop");
+    
+    
+      drive(0,0);
+      
+      }
+
 }

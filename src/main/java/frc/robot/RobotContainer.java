@@ -9,7 +9,7 @@ import javax.sound.midi.VoiceStatus;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
+import frc.robot.commands.AutonDrive;
 import frc.robot.commands.DefaultSimDriveTrainCommand;
 import frc.robot.commands.DefaultDriveTrainCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -40,8 +40,10 @@ public class RobotContainer {
   //Intake subsytem
   private IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
 
+  private final Command m_autoCommand = new AutonDrive();
+
   // PoseEstimation subsytem
-  private PoseEstimationSubsystem m_PoseEstimationSubsystem = new PoseEstimationSubsystem();
+  //private PoseEstimationSubsystem m_PoseEstimationSubsystem = new PoseEstimationSubsystem();
 
   private final XboxController m_intakeController = new XboxController(1);
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -96,6 +98,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_DriveTrainSubsystem);
+    return m_autoCommand;
   }
 }
