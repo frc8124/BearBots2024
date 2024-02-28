@@ -40,7 +40,7 @@ public class RobotContainer {
   //Intake subsytem
   private IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
 
-  private final Command m_autoCommand = new AutonDrive();
+  private Command m_autoCommand = new AutonDrive();
 
   // PoseEstimation subsytem
   //private PoseEstimationSubsystem m_PoseEstimationSubsystem = new PoseEstimationSubsystem();

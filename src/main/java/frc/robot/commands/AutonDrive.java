@@ -20,27 +20,24 @@ import edu.wpi.first.math.geometry.Translation3d;
 
 public final class AutonDrive extends SequentialCommandGroup {
 
-  private DriveSubsystem m_driveSubsystem;
+  private static final DriveSubsystem DriveTrainSubsystem = null;
+  private DriveSubsystem m_DriveTrainSubsystem;
 
-  
 
-  public void AutonDrive(DriveSubsystem driveSubsystem) {
-    m_driveSubsystem = driveSubsystem;
+
+public void AutonDrive(DriveSubsystem m_DriveTrainSubsystem) {
+    m_DriveTrainSubsystem = DriveTrainSubsystem;
     
 
      System.out.println("AutonDrive starting");
 
     addCommands(
-      new RunCommand(m_driveSubsystem::forwardSlow, m_driveSubsystem).withTimeout(.5),
-      new RunCommand( m_driveSubsystem::backwardSlow, m_driveSubsystem ).withTimeout(1.5),
-     // new RunCommand(m_driveSubsystem::stop, m_driveSubsystem ).withTimeout(.3),
-      new RunCommand( m_driveSubsystem::forwardSlow, m_driveSubsystem ).withTimeout(5),
+      new RunCommand(m_DriveTrainSubsystem::forwardSlow, m_DriveTrainSubsystem).withTimeout(1.5),
      // new RunCommand(m_driveSubsystem::stop, m_driveSubsystem ).withTimeout(.3),
      // new RunCommand( m_driveSubsystem::backwardSlow, m_driveSubsystem ).withTimeout(4),
-
      // leave a non-ending stop command at the end of the sequence to ensure another command cannot start
         // for rest of auton period
-        new RunCommand( m_driveSubsystem::stop, m_driveSubsystem )
+        new RunCommand( m_DriveTrainSubsystem::stop, m_DriveTrainSubsystem )
     
     );
   }
