@@ -40,7 +40,7 @@ public class RobotContainer {
   //Intake subsytem
   private IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
 
-  private Command m_autoCommand = new AutonDrive();
+  private Command m_autoCommand; // = new AutonDrive(m_DriveTrainSubsystem);
 
   // PoseEstimation subsytem
   //private PoseEstimationSubsystem m_PoseEstimationSubsystem = new PoseEstimationSubsystem();
@@ -58,6 +58,8 @@ public class RobotContainer {
     else
         m_VisionSubsystem = new VisionSubsystem();
 
+    m_autoCommand = new AutonDrive(m_DriveTrainSubsystem);
+    
       // Configure the trigger bindings
     configureBindings();{
         Trigger buttonY = new JoystickButton(m_intakeController, XboxController.Button.kY.value);

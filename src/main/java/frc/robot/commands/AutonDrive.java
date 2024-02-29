@@ -25,8 +25,8 @@ public final class AutonDrive extends SequentialCommandGroup {
 
 
 
-public void AutonDrive(DriveSubsystem m_DriveTrainSubsystem) {
-    m_DriveTrainSubsystem = DriveTrainSubsystem;
+public AutonDrive(DriveSubsystem driveTrainSubsystem) {
+    m_DriveTrainSubsystem = driveTrainSubsystem;
     
 
      System.out.println("AutonDrive starting");
