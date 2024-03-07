@@ -188,7 +188,7 @@ public class DriveSubsystem extends SubsystemBase {
      */
     public void drive(double xSpeed, double rot) {
         // Full extent joystick will command 1 meter/sec velocity
-
+        xSpeed = 2.5 * xSpeed;
         rot = rot * Math.PI * 2.0;  // rot of 1 would be 1 rad =  1/2PI deg  = 57 degrees/sec
         SmartDashboard.putNumber("Commanded speed (m/s)", xSpeed);
         SmartDashboard.putNumber("Commanded rotation (rad/s)", rot);
