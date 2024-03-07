@@ -295,4 +295,16 @@ public class DriveSubsystem extends SubsystemBase {
       
       }
 
+    public void turnleft()  {
+      //System.out.println("Drivetrain turn left")
+
+      drive(0,1);
+    }
+
+    public void turnright() {
+      //System.out.println("Drivetrain turn right")
+      
+      drive(0,-1);
+    }
+
 }

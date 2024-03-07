@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AutonDrive;
+import frc.robot.commands.AutonScore;
 import frc.robot.commands.DefaultSimDriveTrainCommand;
 import frc.robot.commands.DefaultDriveTrainCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -102,4 +103,23 @@ public class RobotContainer {
     // An example command will be run in autonomous
     return m_autoCommand;
   }
+
+  public Command getAutonomousCommand(String autoSelected) {
+    Command autoCommand = null;
+
+    switch(autoSelected) {
+      case Constants.AutonOpts.kDefaultAuto:
+        autoCommand = new AutonDrive(m_DriveTrainSubsystem);
+        break;
+      
+      case Constants.AutonOpts.kScoreAuto:
+        autoCommand = new AutonScore(m_DriveTrainSubsystem, m_IntakeSubsystem);
+        break;
+
+    }
+
+    // Return the selected command
+    return autoCommand;
+  }
+
 }

@@ -34,4 +34,9 @@ public final class Constants {
      public static final double  kMinOutput = -1;
      public static final double  maxRPM = 5700;  
   }
+
+  public static class AutonOpts {    
+    public static final String kDefaultAuto = "drive";
+    public static final String kScoreAuto = "score";
+  }  
 }
