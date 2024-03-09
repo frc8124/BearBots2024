@@ -16,7 +16,7 @@ public class DefaultDriveTrainCommand extends Command {
   private final DriveSubsystem m_subsystem;
   private DoubleSupplier m_speedSupplier;
   private DoubleSupplier m_rotationSupplier;
-  SlewRateLimiter filter = new SlewRateLimiter(2.5);
+  SlewRateLimiter filter = new SlewRateLimiter(2.75);
 
   //please let rachel connery crnkovich touch code uwu
 
